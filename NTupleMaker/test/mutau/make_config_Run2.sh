@@ -26,7 +26,7 @@ TEMPLATE_CFG_NAME="analysisMacroSynch_mt_${YEAR}"
 # define parameters which are different between MC and data configs
 KEY_LIST=(isData ApplyPUweight ApplyLepSF ApplyRecoilCorrections ApplyBTagScaling)
 VALUE_LIST_MC=(false true true true true)
-VALUE_LIST_DATA=(true false false true true)
+VALUE_LIST_DATA=(true false false false false)
 VALUE_LIST_EMBEDDED=(true false true false false)
 
 # these parameters are year dependant for MC, so leave them as they are in the config and set to 0 only if it is data config
@@ -38,7 +38,10 @@ if [[ $DATA_TYPE == "data" ]]; then
   
   KEY_LIST+=(TauEnergyScaleShift_LepFake_OneProng TauEnergyScaleShift_LepFake_OneProngOnePi0 TauEnergyScaleShift_LepFake_ThreeProng)
   VALUE_LIST_DATA+=(0.0 0.0 0.0)
-  
+
+  KEY_LIST+=(TauEnergyScaleShift_OneProng_Error TauEnergyScaleShift_OneProngOnePi0_Error TauEnergyScaleShift_ThreeProng_Error)
+  VALUE_LIST_DATA+=(0.0 0.0 0.0)  
+
   VALUE_LIST=("${VALUE_LIST_DATA[@]}")
   NOT_DATA_TYPE=("MC" "embedded")
 else
@@ -46,13 +49,7 @@ else
     VALUE_LIST=("${VALUE_LIST_MC[@]}")
     NOT_DATA_TYPE=("data" "embedded")
   else 
-    if [[ $DATA_TYPE == "embedded" ]]; then # will not apply TES for embedded 
-      KEY_LIST+=(TauEnergyScaleShift_OneProng TauEnergyScaleShift_OneProngOnePi0 TauEnergyScaleShift_ThreeProng)
-      VALUE_LIST_EMBEDDED+=(0.0 0.0 0.0)
-      
-      KEY_LIST+=(TauEnergyScaleShift_LepFake_OneProng TauEnergyScaleShift_LepFake_OneProngOnePi0 TauEnergyScaleShift_LepFake_ThreeProng)
-      VALUE_LIST_EMBEDDED+=(0.0 0.0 0.0)
-
+    if [[ $DATA_TYPE == "embedded" ]]; then 
       VALUE_LIST=("${VALUE_LIST_EMBEDDED[@]}")
       NOT_DATA_TYPE=("MC" "data")
     else

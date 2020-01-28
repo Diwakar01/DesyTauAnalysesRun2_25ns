@@ -50,48 +50,41 @@ class PuppiMETSys : public METSys {
       uncertaintyFound = true;
     }    
     else if (label.Contains("boson")) {
-      int nj = 0;
       int systype = 0;
-      if (label.Contains("1jet")) nj=1;
-      else if (label.Contains("2jet")) nj=2;
       if (label.Contains("response"))
 	systype = MEtSys::SysType::Response;
       else if (label.Contains("resolution"))
 	systype = MEtSys::SysType::Resolution;
-      if (cenTree->njets==nj) {
-	TLorentzVector genV = genTools::genV(*analysisTree);
-	TLorentzVector genL = genTools::genL(*analysisTree);
-	metSys->ApplyMEtSys(analysisTree->puppimet_ex,
-			    analysisTree->puppimet_ey,
-			    genV.Px(),
-			    genV.Py(),
-			    genL.Px(),
-			    genL.Py(),
-			    cenTree->njets,
-			    systype,
-			    MEtSys::SysShift::Down,
-			    obs.metx,
-			    obs.mety);
-      }
-      else {
-	obs.metx = analysisTree->puppimet_ex;
-	obs.mety = analysisTree->puppimet_ey;
-      }
+      TLorentzVector genV = genTools::genV(*analysisTree);
+      TLorentzVector genL = genTools::genL(*analysisTree);
+      float puppimet_ex = cenTree->puppimet*TMath::Cos(cenTree->puppimetphi);
+      float puppimet_ey = cenTree->puppimet*TMath::Sin(cenTree->puppimetphi);
+      metSys->ApplyMEtSys(puppimet_ex,
+			  puppimet_ey,
+			  genV.Px(),
+			  genV.Py(),
+			  genL.Px(),
+			  genL.Py(),
+			  cenTree->njets,
+			  systype,
+			  MEtSys::SysShift::Down,
+			  obs.metx,
+			  obs.mety);
       uncertaintyFound = true;
     }
     else {
       std::cout << "Systematic uncertainty " << label << std::endl;
-      obs.met = cenTree->met;
-      obs.metphi = cenTree->metphi;
+      obs.met = cenTree->puppimet;
+      obs.metphi = cenTree->puppimetphi;
     }
     if (uncertaintyFound) {
       obs.metphi = atan2(obs.mety,obs.metx);
       obs.met = sqrt(obs.metx*obs.metx+obs.mety*obs.mety);
       //      std::cout << label << " (met,metphi) : central = (" 
-      //		<< cenTree->met << ","
-      //		<< cenTree->metphi << ")" 
-      //		<< " down = (" << obs.met << ","
-      //                << obs.metphi << ")" << std::endl;
+      //      		<< cenTree->puppimet << ","
+      //      		<< cenTree->puppimetphi << ")" 
+      //      		<< " down = (" << obs.met << ","
+      //		<< obs.metphi << ")" << std::endl;
     }
     FillPuppiMET("Down");
   };
@@ -114,33 +107,26 @@ class PuppiMETSys : public METSys {
       uncertaintyFound = true;
    }    
     else if (label.Contains("boson")) {
-      int nj = 0;
       int systype = 0;
-      if (label.Contains("1jet")) nj=1;
-      else if (label.Contains("2jet")) nj=2;
       if (label.Contains("response"))
 	systype = MEtSys::SysType::Response;
       else if (label.Contains("resolution"))
 	systype = MEtSys::SysType::Resolution;
-      if (cenTree->njets==nj) {
-	TLorentzVector genV = genTools::genV(*analysisTree);
-	TLorentzVector genL = genTools::genL(*analysisTree);
-	metSys->ApplyMEtSys(analysisTree->puppimet_ex,
-			    analysisTree->puppimet_ey,
-			    genV.Px(),
-			    genV.Py(),
-			    genL.Px(),
-			    genL.Py(),
-			    cenTree->njets,
-			    systype,
-			    MEtSys::SysShift::Up,
-			    obs.metx,
-			    obs.mety);
-      }
-      else {
-	obs.metx = analysisTree->puppimet_ex;
-	obs.mety = analysisTree->puppimet_ey;
-      }
+      TLorentzVector genV = genTools::genV(*analysisTree);
+      TLorentzVector genL = genTools::genL(*analysisTree);
+      float puppimet_ex = cenTree->puppimet*TMath::Cos(cenTree->puppimetphi);
+      float puppimet_ey = cenTree->puppimet*TMath::Sin(cenTree->puppimetphi);
+      metSys->ApplyMEtSys(puppimet_ex,
+			  puppimet_ey,
+			  genV.Px(),
+			  genV.Py(),
+			  genL.Px(),
+			  genL.Py(),
+			  cenTree->njets,
+			  systype,
+			  MEtSys::SysShift::Up,
+			  obs.metx,
+			  obs.mety);
       uncertaintyFound = true;
     }
     else {
@@ -154,10 +140,10 @@ class PuppiMETSys : public METSys {
       obs.metphi = atan2(obs.mety,obs.metx);
       obs.met = sqrt(obs.metx*obs.metx+obs.mety*obs.mety);
       //      std::cout << label << " (met,metphi) : central = (" 
-      //		<< cenTree->met << ","
-      //		<< cenTree->metphi << ")" 
-      //		<< " up = (" << obs.met << ","
-      //                << obs.metphi << ")" << std::endl;
+      //      		<< cenTree->puppimet << ","
+      //      		<< cenTree->puppimetphi << ")" 
+      //      		<< " up = (" << obs.met << ","
+      //		<< obs.metphi << ")" << std::endl;
     }
     FillPuppiMET("Up");
   };

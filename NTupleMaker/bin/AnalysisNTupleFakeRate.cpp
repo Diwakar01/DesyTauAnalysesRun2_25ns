@@ -171,6 +171,7 @@ int main(int argc, char * argv[]) {
   std::ifstream fileList(argv[2]);
   std::ifstream fileList0(argv[2]);
   std::string ntupleName("makeroottree/AC1B");
+  std::string initNtupleName("initroottree/AC1B");
   std::string eventHistoName("eventCount/EventCount");
   std::string eventHistoNameData("makeroottree/nEvents");
   std::string weightsHistoName("eventCount/EventWeights");
@@ -281,6 +282,7 @@ int main(int argc, char * argv[]) {
   Float_t jettauPhi_;
 
   Bool_t  jettauDM_;
+  Bool_t  jettauNewDM_;
 
   Bool_t  jettauLooseIso_;
   Bool_t  jettauMediumIso_;
@@ -307,6 +309,29 @@ int main(int argc, char * argv[]) {
 
   Bool_t jettauAntiElectronVLooseMVA6_;
   Bool_t jettauAntiElectronLooseMVA6_;
+  
+  Bool_t jettaubyVVVLooseDeepTau2017v2p1VSe_;
+  Bool_t jettaubyVVLooseDeepTau2017v2p1VSe_;
+  Bool_t jettaubyVLooseDeepTau2017v2p1VSe_;
+  Bool_t jettaubyLooseDeepTau2017v2p1VSe_;
+  Bool_t jettaubyMediumDeepTau2017v2p1VSe_;
+  Bool_t jettaubyTightDeepTau2017v2p1VSe_;
+  Bool_t jettaubyVTightDeepTau2017v2p1VSe_;
+  Bool_t jettaubyVVTightDeepTau2017v2p1VSe_;
+
+  Bool_t jettaubyVLooseDeepTau2017v2p1VSmu_;
+  Bool_t jettaubyLooseDeepTau2017v2p1VSmu_;
+  Bool_t jettaubyMediumDeepTau2017v2p1VSmu_;
+  Bool_t jettaubyTightDeepTau2017v2p1VSmu_;
+
+  Bool_t jettaubyVVVLooseDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyVVLooseDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyVLooseDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyLooseDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyMediumDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyTightDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyVTightDeepTau2017v2p1VSjet_;
+  Bool_t jettaubyVVTightDeepTau2017v2p1VSjet_;
 
   Float_t jettauLeadingTrackPt_;
   Float_t jettauLeadingTrackEta_;
@@ -449,6 +474,7 @@ int main(int argc, char * argv[]) {
   ntuple_->Branch("jettauPhi",&jettauPhi_,"jettauPhi/F");
 
   ntuple_->Branch("jettauDM",&jettauDM_,"jettauDM/O");
+  ntuple_->Branch("jettauNewDM",&jettauNewDM_,"jettauNewDM/O");
 
   ntuple_->Branch("jettauLooseIso", &jettauLooseIso_, "jettauLooseIso/O");
   ntuple_->Branch("jettauMediumIso",&jettauMediumIso_,"jettauMediumIso/O");
@@ -471,6 +497,74 @@ int main(int argc, char * argv[]) {
 
   ntuple_->Branch("jettauAntiElectronVLooseMVA6",&jettauAntiElectronVLooseMVA6_,"jettauAntiElectronVLooseMVA6/O");
   ntuple_->Branch("jettauAntiElectronLooseMVA6", &jettauAntiElectronLooseMVA6_, "jettauAntiElectronLooseMVA6/O");
+
+  // **************** DeepTau discriminators **********************
+  // **************************************************************
+
+  // Deep antielectron discriminators
+  ntuple_->Branch("jettaubyVVVLooseDeepTau2017v2p1VSe",
+		  &jettaubyVVVLooseDeepTau2017v2p1VSe_,
+		  "jettaubyVVVLooseDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyVVLooseDeepTau2017v2p1VSe",
+		  &jettaubyVVLooseDeepTau2017v2p1VSe_,
+		  "jettaubyVVLooseDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyVLooseDeepTau2017v2p1VSe",
+		  &jettaubyVLooseDeepTau2017v2p1VSe_,
+		  "jettaubyVLooseDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyLooseDeepTau2017v2p1VSe",
+		  &jettaubyLooseDeepTau2017v2p1VSe_,
+		  "jettaubyLooseDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyMediumDeepTau2017v2p1VSe",
+		  &jettaubyMediumDeepTau2017v2p1VSe_,
+		  "jettaubyMediumDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyTightDeepTau2017v2p1VSe",
+		  &jettaubyTightDeepTau2017v2p1VSe_,
+		  "jettaubyTightDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyVTightDeepTau2017v2p1VSe",
+		  &jettaubyVTightDeepTau2017v2p1VSe_,
+		  "jettaubyVTightDeepTau2017v2p1VSe/O");
+  ntuple_->Branch("jettaubyVVTightDeepTau2017v2p1VSe",
+		  &jettaubyVVTightDeepTau2017v2p1VSe_,
+		  "jettaubyVVTightDeepTau2017v2p1VSe/O");
+
+  ntuple_->Branch("jettaubyVVVLooseDeepTau2017v2p1VSjet",
+		  &jettaubyVVVLooseDeepTau2017v2p1VSjet_,
+		  "jettaubyVVVLooseDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyVVLooseDeepTau2017v2p1VSjet",
+		  &jettaubyVVLooseDeepTau2017v2p1VSjet_,
+		  "jettaubyVVLooseDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyVLooseDeepTau2017v2p1VSjet",
+		  &jettaubyVLooseDeepTau2017v2p1VSjet_,
+		  "jettaubyVLooseDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyLooseDeepTau2017v2p1VSjet",
+		  &jettaubyLooseDeepTau2017v2p1VSjet_,
+		  "jettaubyLooseDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyMediumDeepTau2017v2p1VSjet",
+		  &jettaubyMediumDeepTau2017v2p1VSjet_,
+		  "jettaubyMediumDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyTightDeepTau2017v2p1VSjet",
+		  &jettaubyTightDeepTau2017v2p1VSjet_,
+		  "jettaubyTightDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyVTightDeepTau2017v2p1VSjet",
+		  &jettaubyVTightDeepTau2017v2p1VSjet_,
+		  "jettaubyVTightDeepTau2017v2p1VSjet/O");
+  ntuple_->Branch("jettaubyVVTightDeepTau2017v2p1VSjet",
+		  &jettaubyVVTightDeepTau2017v2p1VSjet_,
+		  "jettaubyVVTightDeepTau2017v2p1VSjet/O");
+
+  ntuple_->Branch("jettaubyVLooseDeepTau2017v2p1VSmu",
+		  &jettaubyVLooseDeepTau2017v2p1VSmu_,
+		  "jettaubyVLooseDeepTau2017v2p1VSmu/O");
+  ntuple_->Branch("jettaubyLooseDeepTau2017v2p1VSmu",
+		  &jettaubyLooseDeepTau2017v2p1VSmu_,
+		  "jettaubyLooseDeepTau2017v2p1VSmu/O");
+  ntuple_->Branch("jettaubyMediumDeepTau2017v2p1VSmu",
+		  &jettaubyMediumDeepTau2017v2p1VSmu_,
+		  "jettaubyMediumDeepTau2017v2p1VSmu/O");
+  ntuple_->Branch("jettaubyTightDeepTau2017v2p1VSmu",
+		  &jettaubyTightDeepTau2017v2p1VSmu_,
+		  "jettaubyTightDeepTau2017v2p1VSmu/O");
+
 
   ntuple_->Branch("jettauDecay",&jettauDecay_,"jettauDecay/I");
   ntuple_->Branch("jettauGenDecay",&jettauGenDecay_,"jettauGenDecay/I");
@@ -621,6 +715,25 @@ int main(int argc, char * argv[]) {
       exit(-1);
     }
 
+    TTree * _inittree = (TTree*)file_->Get(TString(initNtupleName));
+    if (_inittree!=NULL) {
+      Float_t genweight;
+      if (!isData)
+	_inittree->SetBranchAddress("genweight",&genweight);
+      Long64_t numberOfEntriesInitTree = _inittree->GetEntries();
+      std::cout << "      number of entries in Init Tree = " << numberOfEntriesInitTree << std::endl;
+      for (Long64_t iEntry=0; iEntry<numberOfEntriesInitTree; iEntry++) {
+	_inittree->GetEntry(iEntry);
+	if (isData)
+	  histWeightsH->Fill(0.,1.);
+	else {
+	  Float_t GenWeight = 1;
+	  if (genweight<0) GenWeight = -1;
+	  histWeightsH->Fill(0.,GenWeight);
+	}
+      }
+    }
+
     // accessing tree
     TTree * tree_ = (TTree*)file_->Get(TString(ntupleName));
     if (tree_==NULL) { 
@@ -721,6 +834,7 @@ int main(int argc, char * argv[]) {
       jettauPhi_ = 0;
 
       jettauDM_ = false;
+      jettauNewDM_ = false;
       jettauLooseIso_ = false;
       jettauMediumIso_ = false;
       jettauTightIso_ = false;
@@ -739,6 +853,29 @@ int main(int argc, char * argv[]) {
 
       jettauAntiMuonLoose3_ = false;
       jettauAntiMuonTight3_ = false;
+
+      jettaubyVLooseDeepTau2017v2p1VSmu_ = false;
+      jettaubyLooseDeepTau2017v2p1VSmu_ = false;
+      jettaubyMediumDeepTau2017v2p1VSmu_ = false;
+      jettaubyTightDeepTau2017v2p1VSmu_ = false;
+
+      jettaubyVVVLooseDeepTau2017v2p1VSe_ = false;
+      jettaubyVVLooseDeepTau2017v2p1VSe_ = false;
+      jettaubyVLooseDeepTau2017v2p1VSe_ = false;
+      jettaubyLooseDeepTau2017v2p1VSe_ = false;
+      jettaubyMediumDeepTau2017v2p1VSe_ = false;
+      jettaubyTightDeepTau2017v2p1VSe_ = false;
+      jettaubyVTightDeepTau2017v2p1VSe_ = false;
+      jettaubyVVTightDeepTau2017v2p1VSe_ = false;
+
+      jettaubyVVVLooseDeepTau2017v2p1VSjet_ = false;
+      jettaubyVVVLooseDeepTau2017v2p1VSjet_ = false;
+      jettaubyVVLooseDeepTau2017v2p1VSjet_ = false;
+      jettaubyVLooseDeepTau2017v2p1VSjet_ = false;
+      jettaubyMediumDeepTau2017v2p1VSjet_ = false;
+      jettaubyTightDeepTau2017v2p1VSjet_ = false;
+      jettaubyVTightDeepTau2017v2p1VSjet_ = false;
+      jettaubyVVTightDeepTau2017v2p1VSjet_ = false;
 
       jettauLeadingTrackPt_  = 0;
       jettauLeadingTrackEta_ = 0;
@@ -817,7 +954,6 @@ int main(int argc, char * argv[]) {
 	  genWeight_ = 1;
 	weight_ *= genWeight_;
       }
-      histWeightsH->Fill(double(0.),double(genWeight_));
 
       // **********************************
       // *** Analysis of generator info ***
@@ -1039,21 +1175,23 @@ int main(int argc, char * argv[]) {
 	std::cout << "HLT filter " << SingleMuonHLTFilterName << " not found" << std::endl;
 	exit(-1);
       }
-      if (!isPFJet40HLTFilter) {
-	std::cout << "HLT filter " << PFJet40HLTFilterName << " not found" << std::endl;
-	exit(-1);
-      }
-      if (!isPFJet60HLTFilter) {
-	std::cout << "HLT filter " << PFJet60HLTFilterName << " not found" << std::endl;
-	exit(-1);
-      }
-      if (!isPFJet80HLTFilter) {
-	std::cout << "HLT filter " << PFJet80HLTFilterName << " not found" << std::endl;
-	exit(-1);
-      }
-      if (!isPFJet140HLTFilter) {
-	std::cout << "HLT filter " << PFJet140HLTFilterName << " not found" << std::endl;
-	exit(-1);
+      if (isData) {
+	if (!isPFJet40HLTFilter) {
+	  std::cout << "HLT filter " << PFJet40HLTFilterName << " not found" << std::endl;
+	  exit(-1);
+	}
+	if (!isPFJet60HLTFilter) {
+	  std::cout << "HLT filter " << PFJet60HLTFilterName << " not found" << std::endl;
+	  exit(-1);
+	}
+	if (!isPFJet80HLTFilter) {
+	  std::cout << "HLT filter " << PFJet80HLTFilterName << " not found" << std::endl;
+	  exit(-1);
+	}
+	if (!isPFJet140HLTFilter) {
+	  std::cout << "HLT filter " << PFJet140HLTFilterName << " not found" << std::endl;
+	  exit(-1);
+	}
       }
       // ************************************
       // **** end accessing trigger info ****
@@ -1540,6 +1678,7 @@ int main(int argc, char * argv[]) {
 	  jettauPhi_ = analysisTree.tau_phi[taujetIndex];
 	  
 	  jettauDM_ = analysisTree.tau_decayModeFinding[taujetIndex] > 0.5;
+	  jettauNewDM_ = analysisTree.tau_decayModeFindingNewDMs[taujetIndex] > 0.5;
 	  jettauLooseIso_ = analysisTree.tau_byLooseCombinedIsolationDeltaBetaCorr3Hits[taujetIndex] > 0.5;
 	  jettauMediumIso_ = analysisTree.tau_byMediumCombinedIsolationDeltaBetaCorr3Hits[taujetIndex] > 0.5;
 	  jettauTightIso_ = analysisTree.tau_byTightCombinedIsolationDeltaBetaCorr3Hits[taujetIndex] > 0.5;
@@ -1561,7 +1700,30 @@ int main(int argc, char * argv[]) {
 	  
 	  jettauAntiElectronVLooseMVA6_ = analysisTree.tau_againstElectronVLooseMVA6[taujetIndex] > 0.5;
 	  jettauAntiElectronLooseMVA6_ = analysisTree.tau_againstElectronLooseMVA6[taujetIndex] > 0.5;
-	  
+	 
+	  jettaubyVVVLooseDeepTau2017v2p1VSjet_ = analysisTree.tau_byVVVLooseDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyVVLooseDeepTau2017v2p1VSjet_ = analysisTree.tau_byVVLooseDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyVLooseDeepTau2017v2p1VSjet_ = analysisTree.tau_byVLooseDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyLooseDeepTau2017v2p1VSjet_ = analysisTree.tau_byLooseDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyMediumDeepTau2017v2p1VSjet_ = analysisTree.tau_byMediumDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyTightDeepTau2017v2p1VSjet_ = analysisTree.tau_byTightDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyVTightDeepTau2017v2p1VSjet_ = analysisTree.tau_byVTightDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+	  jettaubyVVTightDeepTau2017v2p1VSjet_ = analysisTree.tau_byVVTightDeepTau2017v2p1VSjet[taujetIndex] > 0.5;
+
+	  jettaubyVVVLooseDeepTau2017v2p1VSe_ = analysisTree.tau_byVVVLooseDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyVVLooseDeepTau2017v2p1VSe_ = analysisTree.tau_byVVLooseDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyVLooseDeepTau2017v2p1VSe_ = analysisTree.tau_byVLooseDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyLooseDeepTau2017v2p1VSe_ = analysisTree.tau_byLooseDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyMediumDeepTau2017v2p1VSe_ = analysisTree.tau_byMediumDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyTightDeepTau2017v2p1VSe_ = analysisTree.tau_byTightDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyVTightDeepTau2017v2p1VSe_ = analysisTree.tau_byVTightDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+	  jettaubyVVTightDeepTau2017v2p1VSe_ = analysisTree.tau_byVVTightDeepTau2017v2p1VSe[taujetIndex] > 0.5;
+
+	  jettaubyVLooseDeepTau2017v2p1VSmu_ = analysisTree.tau_byVLooseDeepTau2017v2p1VSmu[taujetIndex] > 0.5;
+	  jettaubyLooseDeepTau2017v2p1VSmu_ = analysisTree.tau_byLooseDeepTau2017v2p1VSmu[taujetIndex] > 0.5;
+	  jettaubyMediumDeepTau2017v2p1VSmu_ = analysisTree.tau_byMediumDeepTau2017v2p1VSmu[taujetIndex] > 0.5;
+	  jettaubyTightDeepTau2017v2p1VSmu_ = analysisTree.tau_byTightDeepTau2017v2p1VSmu[taujetIndex] > 0.5;
+
 	  jettauDecay_ = analysisTree.tau_decayMode[taujetIndex];
 	  jettauGenDecay_ = analysisTree.tau_genDecayMode[taujetIndex];
 	  

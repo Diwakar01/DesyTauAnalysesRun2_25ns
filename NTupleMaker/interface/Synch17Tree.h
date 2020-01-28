@@ -62,9 +62,23 @@ public :
   Float_t         ipx_1;
   Float_t         ipy_1;
   Float_t         ipz_1;
+  Float_t         ipx_uncorr_1;
+  Float_t         ipy_uncorr_1;
+  Float_t         ipz_uncorr_1;
+  Float_t         ipxy_1;
+  Double_t         IP_signif_PV_with_BS_1;
+  Float_t         ipn_1;
+  Float_t         drip_1;
+  Float_t         detaip_1;
+  Float_t         dphiip_1;
+  Float_t         ipxy_uncorr_1;
+  Float_t         ipn_uncorr_1;
+  Float_t         drip_uncorr_1;
+  Float_t         detaip_uncorr_1;
+  Float_t         dphiip_uncorr_1;
   Float_t         mt_1;
   Float_t         puppimt_1;
-  Int_t 	        tau_decay_mode_1;
+  Int_t 	  tau_decay_mode_1;
   Float_t         dm_1;
   Float_t         dmMVA_1;
   Float_t 	      chpt_1;
@@ -99,9 +113,23 @@ public :
   Float_t         ipx_2;
   Float_t         ipy_2;
   Float_t         ipz_2;
+  Float_t         ipx_uncorr_2;
+  Float_t         ipy_uncorr_2;
+  Float_t         ipz_uncorr_2;
+  Float_t         ipxy_2;
+  Double_t        IP_signif_PV_with_BS_2;
+  Float_t         ipn_2;
+  Float_t         drip_2;
+  Float_t         detaip_2;
+  Float_t         dphiip_2;
+  Float_t         ipxy_uncorr_2;
+  Float_t         ipn_uncorr_2;
+  Float_t         drip_uncorr_2;
+  Float_t         detaip_uncorr_2;
+  Float_t         dphiip_uncorr_2;
   Float_t         mt_2;
   Float_t         puppimt_2;
-  Int_t 	        tau_decay_mode_2;
+  Int_t 	  tau_decay_mode_2;
   Float_t         dm_2;
   Float_t         dmMVA_2;
   Float_t 	      chpt_2;
@@ -255,13 +283,13 @@ public :
   Float_t         embweight;
 
   Float_t         topptweight;
-  Double_t 	      zptweight;
+  Double_t 	  zptweight;
   Double_t        trkeffweight;
   Float_t         etaufakeweight;
   Float_t         mutaufakeweight;
   
   Bool_t          trg_singlemuon;
-  Bool_t	        trg_singleelectron;
+  Bool_t	  trg_singleelectron;
   Bool_t          singleLepTrigger;
   Bool_t          trg_mutaucross;
   Bool_t          trg_mutaucross_mu;
@@ -378,11 +406,22 @@ public :
   Float_t         acotautau_refitbs_10;
   Float_t         acotautau_refitbs_01;
   Float_t         acotautau_refitbs_11;
- 
+  Float_t         acotautau_refitbs_02;
+
   Float_t         acotautau_helix_00;
   Float_t         acotautau_helix_10;
   Float_t         acotautau_helix_01;
   Float_t         acotautau_helix_11;
+
+  Float_t         acotautau_refitbs_uncorr_00;
+  Float_t         acotautau_refitbs_uncorr_10;
+  Float_t         acotautau_refitbs_uncorr_01;
+  Float_t         acotautau_refitbs_uncorr_11;
+ 
+  Float_t         acotautau_helix_uncorr_00;
+  Float_t         acotautau_helix_uncorr_10;
+  Float_t         acotautau_helix_uncorr_01;
+  Float_t         acotautau_helix_uncorr_11;
 
   //Merijn add acotau for psi:
   Float_t         acotautauPsi_00;
@@ -426,6 +465,14 @@ public :
   Float_t         tau_SV_covzy_2;
   Float_t         tau_SV_covzz_2;
 
+  Float_t alpha_IP_1;
+  Float_t alpha_IP_uncorr_1;
+  Float_t alpha_plane_1;
+
+  Float_t alpha_IP_2;
+  Float_t alpha_IP_uncorr_2;
+  Float_t alpha_plane_2;
+
   //reco vertices
   Float_t RecoVertexX;
   Float_t RecoVertexY;
@@ -435,6 +482,7 @@ public :
   Float_t pvy;
   Float_t pvz;
   Bool_t  is_refitted_PV_with_BS;
+  Int_t   v_tracks;
   
   Float_t GenVertexX;
   Float_t GenVertexY;
@@ -449,6 +497,7 @@ public :
   Float_t VyConstitTau2;
   Float_t VzConstitTau2;
   Float_t alphaminus;
+  Float_t alphaminus_uncorr;
 
   Double_t TauSpinnerWeightsEven;
   Double_t TauSpinnerWeightsOdd;
@@ -458,6 +507,10 @@ public :
 
   //Vinay: ditau_vis_pT + MET
   Float_t Prompt_pT;
+
+  Bool_t isrefitBS;
+
+  Bool_t apply_recoil;
 
   //////////////////////////////////////////////
   //            List of branches              //
@@ -496,6 +549,20 @@ public :
   TBranch	 *b_ipx_1;
   TBranch	 *b_ipy_1;
   TBranch	 *b_ipz_1;
+  TBranch	 *b_ipx_uncorr_1;
+  TBranch	 *b_ipy_uncorr_1;
+  TBranch	 *b_ipz_uncorr_1;
+  TBranch	 *b_ipxy_1;
+  TBranch	 *b_IP_signif_PV_with_BS_1;
+  TBranch	 *b_ipn_1;
+  TBranch	 *b_drip_1;
+  TBranch	 *b_detaip_1;
+  TBranch	 *b_dphiip_1;
+  TBranch	 *b_ipxy_uncorr_1;
+  TBranch	 *b_ipn_uncorr_1;
+  TBranch	 *b_drip_uncorr_1;
+  TBranch	 *b_detaip_uncorr_1;
+  TBranch	 *b_dphiip_uncorr_1;
   TBranch	 *b_mt_1;
   TBranch	 *b_puppimt_1;
   TBranch  *b_tau_decay_mode_1;
@@ -532,6 +599,20 @@ public :
   TBranch	 *b_ipx_2;
   TBranch	 *b_ipy_2;
   TBranch	 *b_ipz_2;
+  TBranch	 *b_ipx_uncorr_2;
+  TBranch	 *b_ipy_uncorr_2;
+  TBranch	 *b_ipz_uncorr_2;
+  TBranch	 *b_ipxy_2;
+  TBranch	 *b_IP_signif_PV_with_BS_2;
+  TBranch	 *b_ipn_2;
+  TBranch	 *b_drip_2;
+  TBranch	 *b_detaip_2;
+  TBranch	 *b_dphiip_2;
+  TBranch	 *b_ipxy_uncorr_2;
+  TBranch	 *b_ipn_uncorr_2;
+  TBranch	 *b_drip_uncorr_2;
+  TBranch	 *b_detaip_uncorr_2;
+  TBranch	 *b_dphiip_uncorr_2;
   TBranch	 *b_mt_2;
   TBranch	 *b_puppimt_2;
   TBranch  *b_tau_decay_mode_2;
@@ -810,11 +891,22 @@ public :
   TBranch        *b_acotautau_refitbs_10;
   TBranch        *b_acotautau_refitbs_01;
   TBranch        *b_acotautau_refitbs_11;
+  TBranch        *b_acotautau_refitbs_02;
 
   TBranch        *b_acotautau_helix_00;
   TBranch        *b_acotautau_helix_10;
   TBranch        *b_acotautau_helix_01;
   TBranch        *b_acotautau_helix_11;
+
+  TBranch        *b_acotautau_refitbs_uncorr_00;
+  TBranch        *b_acotautau_refitbs_uncorr_10;
+  TBranch        *b_acotautau_refitbs_uncorr_01;
+  TBranch        *b_acotautau_refitbs_uncorr_11;
+
+  TBranch        *b_acotautau_helix_uncorr_00;
+  TBranch        *b_acotautau_helix_uncorr_10;
+  TBranch        *b_acotautau_helix_uncorr_01;
+  TBranch        *b_acotautau_helix_uncorr_11;
 
   TBranch        *b_acotautauPsi_00;
   TBranch        *b_acotautauPsi_10;
@@ -868,6 +960,7 @@ public :
   TBranch        *b_pvy;
   TBranch        *b_pvz;  
   TBranch        *b_is_refitted_PV_with_BS;  
+  TBranch        *b_v_tracks;
 
 //gen vertex info is practical to have
   TBranch        *b_GenVertexX;
@@ -882,6 +975,15 @@ public :
   TBranch        *b_VyConstitTau2;
   TBranch        *b_VzConstitTau2;
   TBranch        *b_alphaminus;
+  TBranch        *b_alphaminus_uncorr;
+
+  TBranch        *b_alpha_IP_1;
+  TBranch        *b_alpha_IP_uncorr_1;
+  TBranch        *b_alpha_plane_1;
+
+  TBranch        *b_alpha_IP_2;
+  TBranch        *b_alpha_IP_uncorr_2;
+  TBranch        *b_alpha_plane_2;
 
   TBranch        *b_TauSpinnerWeightsEven;
   TBranch        *b_TauSpinnerWeightsOdd;
@@ -890,6 +992,8 @@ public :
   TBranch        *b_TauSpinnerWeightsMix0p375;
 
   TBranch       *b_Prompt_pT;
+
+  TBranch       *b_isrefitBS;
 
   Synch17Tree(TTree *tree=0);
   virtual ~Synch17Tree();
